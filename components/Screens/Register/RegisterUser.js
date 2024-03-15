@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
     iconPassword: {
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
     textInput: {

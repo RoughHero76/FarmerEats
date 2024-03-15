@@ -25,7 +25,7 @@ const FormInfo = () => {
 
     const previousData = route.params.registerData;
 
-    console.log(previousData);
+    //console.log(previousData);
     const handleContinueButton = () => {
 
 
@@ -46,7 +46,7 @@ const FormInfo = () => {
 
         };
 
-        console.log(registerData);
+        //console.log(registerData);
         navigate.navigate('Verification', { registerData });
     };
 
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
     iconPassword: {
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
     textInput: {
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     continueButtonContainer: {
         flexDirection: 'row',
         alignItems: 'flex-end',
-        position: 'absolute',
+        marginTop: 230,
         bottom: 20,
         left: -10,
         right: 30,

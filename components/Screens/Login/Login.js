@@ -1,8 +1,14 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Image, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import atIcon from '../../../assets/icons/at.png';
+import lockIcon from '../../../assets/icons/lock.png';
+import facebookIcon from '../../../assets/icons/facebook.png';
+import googleIcon from '../../../assets/icons/google.png';
+import appleIcon from '../../../assets/icons/apple.png';
+
 
 const LoginScreen = () => {
     const navigate = useNavigation();
@@ -10,6 +16,23 @@ const LoginScreen = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+
+
+    const clearMessage = () => {
+        setErrorMessage('');
+    }
+
+    useEffect(() => {
+        clearMessage();
+    }, []);
+
+    useEffect(() => {
+        const unsubscribe = navigate.addListener('focus', () => {
+            clearMessage();
+        });
+
+        return unsubscribe;
+    }, [navigate]);
 
     const handleForgotPassword = () => {
         navigate.navigate('ForgotPassword');
@@ -37,7 +60,7 @@ const LoginScreen = () => {
 
                 const response = await axios.post('http://sowlab.com/assignment/user/login', Login);
 
-                console.log('Response: ', JSON.stringify(response.data, null, 2));
+                //console.log('Response: ', JSON.stringify(response.data, null, 2));
                 if (response.data.success === true) {
                     navigate.navigate('Home');
                 } else {
@@ -73,9 +96,7 @@ const LoginScreen = () => {
 
                     <View style={styles.sectionStyleEmail} >
                         <Image
-                            source={{
-                                uri: 'https://cdn-icons-png.freepik.com/512/67/67177.png',
-                            }}
+                            source={atIcon}
                             style={styles.iconEmail}
                         />
                         <TextInput
@@ -89,9 +110,7 @@ const LoginScreen = () => {
 
                     <View style={styles.sectionStylePassword} >
                         <Image
-                            source={{
-                                uri: 'https://cdn-icons-png.flaticon.com/512/2889/2889676.png',
-                            }}
+                            source={lockIcon}
                             style={styles.iconPassword}
                         />
                         <TextInput
@@ -125,25 +144,19 @@ const LoginScreen = () => {
                     <View style={styles.socialIconContainer}>
                         <TouchableOpacity style={styles.socialIcon}>
                             <Image
-                                source={{
-                                    uri: 'https://cdn-icons-png.flaticon.com/512/300/300221.png',
-                                }}
+                                source={googleIcon}
                                 style={styles.icon}
                             />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.socialIcon}>
                             <Image
-                                source={{
-                                    uri: 'https://cdn-icons-png.flaticon.com/512/0/747.png',
-                                }}
+                                source={appleIcon}
                                 style={styles.icon}
                             />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.socialIcon}>
                             <Image
-                                source={{
-                                    uri: 'https://cdn-icons-png.flaticon.com/512/5968/5968764.png',
-                                }}
+                                source={facebookIcon}
                                 style={styles.icon}
                             />
                         </TouchableOpacity>
@@ -226,7 +239,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
     iconPassword: {
@@ -234,8 +247,8 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 5,
         height: 15,
-        width: 15,
-        resizeMode: 'stretch',
+        width: 12,
+        resizeMode: 'contain',
         alignItems: 'center',
     },
     inputEmail: {

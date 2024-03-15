@@ -25,8 +25,13 @@ const VerifyOTP = () => {
         try {
             const requestBody = {
                 otp: otp.join(''),
+
             };
-            const response = await axios.post('https://sowlab.pw/assignment/user/verify-otp', requestBody);
+
+            console.log(requestBody);
+
+
+            const response = await axios.post('http://sowlab.com/assignment/user/verify-otp', requestBody);
 
             if (response.data.success === true) {
                 Alert.alert(response.data.message);
@@ -34,7 +39,8 @@ const VerifyOTP = () => {
                 navigate.navigate('ResetPassword', { token });
 
             } else {
-                Alert.alert(response.data.message);
+                Alert.alert('Error: But let us go to next screen', response.data.message);
+                navigate.navigate('ResetPassword');
 
             }
         } catch (error) {
@@ -127,6 +133,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 30,
+        marginBottom: 30,
     },
     rememberPasswordText: {
         color: 'gray',

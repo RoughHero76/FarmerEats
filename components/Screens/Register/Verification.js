@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { launchCamera } from 'react-native-image-picker';
 import DocumentPicker from 'react-native-document-picker';
@@ -18,7 +18,7 @@ const Verification = () => {
     const registration_proof = 'my_proof.pdf';
     const previousData = route.params.registerData;
 
-    console.log(previousData);
+    //console.log(previousData);
     const handleContinueButtonPress = () => {
 
         const registerData = {
@@ -27,7 +27,7 @@ const Verification = () => {
 
         };
 
-        console.log(registerData);
+        //console.log(registerData);
         navigate.navigate('BusinessHours', { registerData });
     };
 
@@ -60,11 +60,13 @@ const Verification = () => {
 
         launchCamera(options, (response) => {
             if (response.errorCode) {
-                console.log('CameraPicker Error:', response.errorMessage);
+                Alert.alert('Error: ', 'Sorry, we encountered an error');
+                //console.log('CameraPicker Error:', response.errorMessage);
             } else if (!response.didCancel) {
                 setSelectedDocument(response.assets[0].fileName); // Update the selected document with the image name
             } else {
-                console.log('User cancelled camera picker');
+                Alert.alert('Cancelled', 'You cancelled camera');
+                //console.log('User cancelled camera picker');
             }
         });
     };

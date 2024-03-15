@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import axios from 'axios';
-const Login = () => {
+import lockIcon from '../../../assets/icons/lock.png';
+
+const ResetPassword = () => {
+
+
 
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -57,17 +61,13 @@ const Login = () => {
                     <Text style={styles.fadedText}>
                         Type your new password
                     </Text>
-                    <TouchableOpacity style={styles.loginButton}>
-                        <Text style={styles.buttonText}>Confi</Text>
-                    </TouchableOpacity>
+
                 </View>
                 <Text style={styles.messageText}> {message} </Text>
                 <View style={styles.sectionStylePassword} >
 
                     <Image
-                        source={{
-                            uri: 'https://cdn-icons-png.flaticon.com/512/2889/2889676.png',
-                        }}
+                        source={lockIcon}
                         style={styles.iconPassword}
                     />
                     <TextInput
@@ -84,9 +84,7 @@ const Login = () => {
 
                 <View style={styles.sectionStyleNewPassword} >
                     <Image
-                        source={{
-                            uri: 'https://cdn-icons-png.flaticon.com/512/2889/2889676.png',
-                        }}
+                        source={lockIcon}
                         style={styles.iconPassword}
                     />
                     <TextInput
@@ -129,7 +127,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     rowContainer: {
-        marginBottom: 50,
+        marginBottom: 30,
         flexDirection: 'row',
     },
     greetingUser: {
@@ -182,7 +180,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
 
@@ -218,4 +216,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Login;
+export default ResetPassword;

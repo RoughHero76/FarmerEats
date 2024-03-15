@@ -13,7 +13,7 @@ const BusinessHours = () => {
     const device_token = '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx';
     const type = 'email';
     const social_id = '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx';
-    console.log(previousData);
+    //console.log(previousData);
 
     const goBackButton = () => {
         navigate.goBack();
@@ -41,7 +41,7 @@ const BusinessHours = () => {
             social_id: social_id,
         };
 
-        console.log('SUBMMISSION DATA: ', registerData);
+        //console.log('SUBMMISSION DATA: ', registerData);
 
         try {
             const response = await fetch('https://sowlab.pw/assignment/user/register', {
@@ -53,10 +53,9 @@ const BusinessHours = () => {
             });
 
             if (response.ok) {
-                // Handle successful registration
-                console.log('Registration successful');
+                //console.log('Registration successful');
 
-                console.log(response);
+                //console.log(response);
                 navigate.navigate('Confirmation');
             } else {
                 // Handle registration error
@@ -239,7 +238,7 @@ const BusinessHours = () => {
         },
     });
 
-    console.log('Day: ', businessHours);
+    //console.log('Day: ', businessHours);
 
     return (
         <View style={styles.container}>

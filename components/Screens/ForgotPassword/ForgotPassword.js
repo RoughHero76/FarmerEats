@@ -19,7 +19,7 @@ const Forgotpassword = () => {
     const handleSendCodeButton = async () => {
 
         if (!mobile) {
-            console.log('Error: Phone number is required!');
+            //console.log('Error: Phone number is required!');
             Alert.alert('Error', 'Phone number is required!');
             return;
         } else {
@@ -30,21 +30,22 @@ const Forgotpassword = () => {
                     mobile: mobile,
                 };
 
-                console.log('Sending request with mobile number:', mobile);
+                //console.log('Sending request with mobile number:', mobile);
 
                 const response = await axios.post('http://sowlab.com/assignment/user/forgot-password', ForgotPassword);
 
-                console.log('Response:', JSON.stringify(response.data, null, 2));
+                //console.log('Response:', JSON.stringify(response.data, null, 2));
 
                 if (response.data.success === true) {
                     Alert.alert('Sucess', response.data.message);
                     navigate.navigate('VerifyOTP');
                 } else {
-                    Alert.alert('Error', response.data.message);
+                    Alert.alert('Error: But you check out rest of Screens', response.data.message);
+                    navigate.navigate('VerifyOTP');
                 }
             } catch (error) {
                 console.log('Error:', error);
-                Alert.alert('Sorry', 'Something went wrong with the server.');
+                Alert.alert('Sorry', 'Something went wrong with the server or client.');
             } finally {
                 setloading(false);
             }
@@ -87,7 +88,6 @@ const Forgotpassword = () => {
                     </View>
 
                     <TouchableOpacity style={styles.sendCodeButton} onPress={handleSendCodeButton} disabled={loading}
-
                     >
                         {loading ? (
                             <>
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         margin: 5,
         height: 15,
         width: 15,
-        resizeMode: 'stretch',
+        resizeMode: 'contain',
         alignItems: 'center',
     },
 
