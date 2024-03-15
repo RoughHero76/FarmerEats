@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const BusinessHours = () => {
     const navigate = useNavigation();
     const route = useRoute();
+    const [loading, setLoading] = useState(false);
 
     const previousData = route.params.registerData;
 
@@ -44,6 +45,7 @@ const BusinessHours = () => {
         //console.log('SUBMMISSION DATA: ', registerData);
 
         try {
+            setLoading(true);
             const response = await fetch('https://sowlab.pw/assignment/user/register', {
                 method: 'POST',
                 headers: {
@@ -58,15 +60,15 @@ const BusinessHours = () => {
                 //console.log(response);
                 navigate.navigate('Confirmation');
             } else {
-                // Handle registration error
                 const errorData = await response.json();
-                console.error('Registration failed:', errorData);
+                Alert.alert('Registration failed:', errorData);
 
             }
         } catch (error) {
-            // Handle network or other errors
-            console.error('Error:', error);
+            //console.error('Error:', error);
 
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -299,8 +301,18 @@ const BusinessHours = () => {
                         style={styles.backButtonIcon}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.continueButton} onPress={handleSubmittButton}>
-                    <Text style={styles.continueButtonText}>Submitt</Text>
+
+                <TouchableOpacity style={styles.continueButton} onPress={handleSubmittButton} disabled={loading}
+
+                >
+                    {loading ? (
+                        <>
+                            <ActivityIndicator size="small" color="white" />
+                            <Text style={styles.continueButtonText}>Please wait...</Text>
+                        </>
+                    ) : (
+                        <Text style={styles.continueButtonText}>Submitt</Text>
+                    )}
                 </TouchableOpacity>
             </View>
         </View>
