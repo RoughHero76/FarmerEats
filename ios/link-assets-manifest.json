@@ -1,0 +1,61 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/BeVietnam-Bold.ttf",
+      "sha1": "6f9220a5a39f3c0788f3b39b47ba35e5584c129a"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-BoldItalic.ttf",
+      "sha1": "a62d20dfc3276cab44e514dd2cc5b42c95b59025"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-ExtraBold.ttf",
+      "sha1": "7544fc9ef536f6d4083b36d2e45f01cde42b5920"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-ExtraBoldItalic.ttf",
+      "sha1": "cce59205a7ec15712f6c7cda84f896eaf786ac03"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-Italic.ttf",
+      "sha1": "0c268f45141531707ea5da2efab989d9ae3e6381"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-Light.ttf",
+      "sha1": "99c6a580d5fd82b4c4815696cec1db2f34b9d215"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-LightItalic.ttf",
+      "sha1": "c36979a448d4c2dc16e6750430489762c1ac0333"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-Medium.ttf",
+      "sha1": "9ca2b036babbc23d7c5982d065bb2d63484cf2c8"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-MediumItalic.ttf",
+      "sha1": "a7f8fe16d2e778e9c510a1ec1ae2dee8c595ad11"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-Regular.ttf",
+      "sha1": "de50e375a10b547ecac818f85834f7e13fe24624"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-SemiBold.ttf",
+      "sha1": "3a54b9d56ce22f2f4be01e54c2c964fa97ab67b9"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-SemiBoldItalic.ttf",
+      "sha1": "03a632ee1c0744c18f2d08460961373da7c14afe"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-Thin.ttf",
+      "sha1": "440c020f037892f20193689548c49af498f99b3c"
+    },
+    {
+      "path": "assets/fonts/BeVietnam-ThinItalic.ttf",
+      "sha1": "d2eb1b54fbeb98e8ba175149395a8b48c1cbeb36"
+    }
+  ]
+}

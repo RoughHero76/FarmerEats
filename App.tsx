@@ -1,118 +1,154 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import OnBoarding from './components/OnBoarding/OnBoarding';
+import Login from './components/Screens/Login/Login';
+import ForgotPassword from './components/Screens/ForgotPassword/ForgotPassword';
+import VerifyOTP from './components/Screens/ForgotPassword/VerifyOTP';
+import ResetPassword from './components/Screens/ForgotPassword/ResetPassword';
+import RegisterUser from './components/Screens/Register/RegisterUser';
+import FormInfo from './components/Screens/Register/FormInfo';
+import Verification from './components/Screens/Register/Verification';
+import BusinessHours from './components/Screens/Register/BusinessHours';
+import Confirmation from './components/Screens/Register/Confirmation';
+import Home from './components/Screens/Home/Home';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createNativeStackNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <Stack.Navigator initialRouteName="onBoarding">
+
+
+
+          {/*  OnBoarding Screen */}
+          <Stack.Screen
+            name="OnBoarding"
+            component={OnBoarding}
+            options={{
+              headerShown: false,
+            }}
+          />
+
+          {/*  Login Screen */}
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+
+          {/*  Register Screen */}
+          <Stack.Screen
+            name="RegisterUser"
+            component={RegisterUser}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="FormInfo"
+            component={FormInfo}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="Verification"
+            component={Verification}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="BusinessHours"
+            component={BusinessHours}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="Confirmation"
+            component={Confirmation}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+          {/* Forgot Password Screens */}
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="VerifyOTP"
+            component={VerifyOTP}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="ResetPassword"
+            component={ResetPassword}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerTitle: 'FarmerEats',
+              headerBackVisible: false,
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </View>
+    </NavigationContainer>
   );
-}
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+};
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+});

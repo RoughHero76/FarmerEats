@@ -14,6 +14,20 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-FarmerEats-FarmerEatsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FarmerEats-FarmerEatsTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		0C9976758B614C4080E11DFE /* BeVietnam-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14F00E982F544764B4AC1180 /* BeVietnam-Bold.ttf */; };
+		10B19663F4864447A38417DB /* BeVietnam-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6571EE6D3704A4588A8E94D /* BeVietnam-BoldItalic.ttf */; };
+		94C7BB5C9CDA489CB59900A2 /* BeVietnam-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1622D509CE6844FDB25EA943 /* BeVietnam-ExtraBold.ttf */; };
+		A05D415224B94CE584294EDD /* BeVietnam-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B7B128624F74CB29FAC9D34 /* BeVietnam-ExtraBoldItalic.ttf */; };
+		CC87BE3620CA498EA8CDBC12 /* BeVietnam-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F04119BF961840AC85BEBA63 /* BeVietnam-Italic.ttf */; };
+		D9639F61AA634073B1BE0941 /* BeVietnam-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79309613C907467BBCB2442D /* BeVietnam-Light.ttf */; };
+		51F42B240476427391428FFF /* BeVietnam-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFA112583D524278BA0665EA /* BeVietnam-LightItalic.ttf */; };
+		FD27B6DBDC404B069B7CCDCE /* BeVietnam-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF806A3752F4426EB19490FC /* BeVietnam-Medium.ttf */; };
+		BC1B8CFE5183475E90CDF95B /* BeVietnam-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3D0D8AB59304181AEF28AEF /* BeVietnam-MediumItalic.ttf */; };
+		5583AF32172C4D7E8EF565D2 /* BeVietnam-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A71E81704DC04711A89417F1 /* BeVietnam-Regular.ttf */; };
+		D8B0E2AC25A2462BBA0365DD /* BeVietnam-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF09B814F7A64D30BD3A42E8 /* BeVietnam-SemiBold.ttf */; };
+		4EA385C26EFC445D953AB609 /* BeVietnam-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14CF2A69C73B4F58BECCB8B0 /* BeVietnam-SemiBoldItalic.ttf */; };
+		A2B51FEDA232498FB98301E6 /* BeVietnam-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0E0BCAE7BEF408EB8BC262B /* BeVietnam-Thin.ttf */; };
+		F44C0577D5F94C93AC6D6C27 /* BeVietnam-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 969AFC18F68546878D31DC0F /* BeVietnam-ThinItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +58,20 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FarmerEats/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FarmerEats-FarmerEatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FarmerEats-FarmerEatsTests.release.xcconfig"; path = "Target Support Files/Pods-FarmerEats-FarmerEatsTests/Pods-FarmerEats-FarmerEatsTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		14F00E982F544764B4AC1180 /* BeVietnam-Bold.ttf */ = {isa = PBXFileReference; name = "BeVietnam-Bold.ttf"; path = "../assets/fonts/BeVietnam-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A6571EE6D3704A4588A8E94D /* BeVietnam-BoldItalic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-BoldItalic.ttf"; path = "../assets/fonts/BeVietnam-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1622D509CE6844FDB25EA943 /* BeVietnam-ExtraBold.ttf */ = {isa = PBXFileReference; name = "BeVietnam-ExtraBold.ttf"; path = "../assets/fonts/BeVietnam-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0B7B128624F74CB29FAC9D34 /* BeVietnam-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-ExtraBoldItalic.ttf"; path = "../assets/fonts/BeVietnam-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F04119BF961840AC85BEBA63 /* BeVietnam-Italic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-Italic.ttf"; path = "../assets/fonts/BeVietnam-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		79309613C907467BBCB2442D /* BeVietnam-Light.ttf */ = {isa = PBXFileReference; name = "BeVietnam-Light.ttf"; path = "../assets/fonts/BeVietnam-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BFA112583D524278BA0665EA /* BeVietnam-LightItalic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-LightItalic.ttf"; path = "../assets/fonts/BeVietnam-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FF806A3752F4426EB19490FC /* BeVietnam-Medium.ttf */ = {isa = PBXFileReference; name = "BeVietnam-Medium.ttf"; path = "../assets/fonts/BeVietnam-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C3D0D8AB59304181AEF28AEF /* BeVietnam-MediumItalic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-MediumItalic.ttf"; path = "../assets/fonts/BeVietnam-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A71E81704DC04711A89417F1 /* BeVietnam-Regular.ttf */ = {isa = PBXFileReference; name = "BeVietnam-Regular.ttf"; path = "../assets/fonts/BeVietnam-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FF09B814F7A64D30BD3A42E8 /* BeVietnam-SemiBold.ttf */ = {isa = PBXFileReference; name = "BeVietnam-SemiBold.ttf"; path = "../assets/fonts/BeVietnam-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		14CF2A69C73B4F58BECCB8B0 /* BeVietnam-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-SemiBoldItalic.ttf"; path = "../assets/fonts/BeVietnam-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A0E0BCAE7BEF408EB8BC262B /* BeVietnam-Thin.ttf */ = {isa = PBXFileReference; name = "BeVietnam-Thin.ttf"; path = "../assets/fonts/BeVietnam-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		969AFC18F68546878D31DC0F /* BeVietnam-ThinItalic.ttf */ = {isa = PBXFileReference; name = "BeVietnam-ThinItalic.ttf"; path = "../assets/fonts/BeVietnam-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +150,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				18761EBA7FCA41FAA5ABADB5 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +176,28 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		18761EBA7FCA41FAA5ABADB5 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				14F00E982F544764B4AC1180 /* BeVietnam-Bold.ttf */,
+				A6571EE6D3704A4588A8E94D /* BeVietnam-BoldItalic.ttf */,
+				1622D509CE6844FDB25EA943 /* BeVietnam-ExtraBold.ttf */,
+				0B7B128624F74CB29FAC9D34 /* BeVietnam-ExtraBoldItalic.ttf */,
+				F04119BF961840AC85BEBA63 /* BeVietnam-Italic.ttf */,
+				79309613C907467BBCB2442D /* BeVietnam-Light.ttf */,
+				BFA112583D524278BA0665EA /* BeVietnam-LightItalic.ttf */,
+				FF806A3752F4426EB19490FC /* BeVietnam-Medium.ttf */,
+				C3D0D8AB59304181AEF28AEF /* BeVietnam-MediumItalic.ttf */,
+				A71E81704DC04711A89417F1 /* BeVietnam-Regular.ttf */,
+				FF09B814F7A64D30BD3A42E8 /* BeVietnam-SemiBold.ttf */,
+				14CF2A69C73B4F58BECCB8B0 /* BeVietnam-SemiBoldItalic.ttf */,
+				A0E0BCAE7BEF408EB8BC262B /* BeVietnam-Thin.ttf */,
+				969AFC18F68546878D31DC0F /* BeVietnam-ThinItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -243,6 +294,20 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				0C9976758B614C4080E11DFE /* BeVietnam-Bold.ttf in Resources */,
+				10B19663F4864447A38417DB /* BeVietnam-BoldItalic.ttf in Resources */,
+				94C7BB5C9CDA489CB59900A2 /* BeVietnam-ExtraBold.ttf in Resources */,
+				A05D415224B94CE584294EDD /* BeVietnam-ExtraBoldItalic.ttf in Resources */,
+				CC87BE3620CA498EA8CDBC12 /* BeVietnam-Italic.ttf in Resources */,
+				D9639F61AA634073B1BE0941 /* BeVietnam-Light.ttf in Resources */,
+				51F42B240476427391428FFF /* BeVietnam-LightItalic.ttf in Resources */,
+				FD27B6DBDC404B069B7CCDCE /* BeVietnam-Medium.ttf in Resources */,
+				BC1B8CFE5183475E90CDF95B /* BeVietnam-MediumItalic.ttf in Resources */,
+				5583AF32172C4D7E8EF565D2 /* BeVietnam-Regular.ttf in Resources */,
+				D8B0E2AC25A2462BBA0365DD /* BeVietnam-SemiBold.ttf in Resources */,
+				4EA385C26EFC445D953AB609 /* BeVietnam-SemiBoldItalic.ttf in Resources */,
+				A2B51FEDA232498FB98301E6 /* BeVietnam-Thin.ttf in Resources */,
+				F44C0577D5F94C93AC6D6C27 /* BeVietnam-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
