@@ -8,6 +8,7 @@ import lockIcon from '../../../assets/icons/lock.png';
 import facebookIcon from '../../../assets/icons/facebook.png';
 import googleIcon from '../../../assets/icons/google.png';
 import appleIcon from '../../../assets/icons/apple.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const LoginScreen = () => {
@@ -20,11 +21,19 @@ const LoginScreen = () => {
 
     const clearMessage = () => {
         setErrorMessage('');
-    }
-
+    };
     useEffect(() => {
+        AsyncStorage.getItem('token')
+            .then(token => {
+                if (token) {
+                    navigate.navigate('Home');
+                }
+            })
+            .catch(error => console.error('Error reading token:', error));
+
         clearMessage();
-    }, []);
+
+    }, [navigate]);
 
     useEffect(() => {
         const unsubscribe = navigate.addListener('focus', () => {
@@ -42,11 +51,9 @@ const LoginScreen = () => {
         navigate.navigate('RegisterUser');
     };
     const handleLogin = async () => {
-
         if (!email || !password) {
             setErrorMessage('All fields are required');
-        }
-        else {
+        } else {
             setLoading(true);
             try {
                 const Login = {
@@ -54,26 +61,35 @@ const LoginScreen = () => {
                     password,
                     role: 'farmer',
                     device_token: '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
-                    type: 'email/facebook/google/apple',
+                    type: 'email',
                     social_id: '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
                 };
 
-                const response = await axios.post('http://sowlab.com/assignment/user/login', Login);
+                //                console.log('Login data:', Login);
 
-                //console.log('Response: ', JSON.stringify(response.data, null, 2));
+                const response = await axios.post('https://sowlab.com/assignment/user/login', Login);
+
+                //   console.log('Response: ', response);
+
+                // console.log('Response: ', JSON.stringify(response.data, null, 2)); // Debug: Log response data
+
                 if (response.data.success === true) {
+                    const token = response.data.token;
+                    console.log('Token: ', token);
+                    AsyncStorage.setItem('token', token);
                     navigate.navigate('Home');
                 } else {
                     setErrorMessage(response.data.message);
                 }
             } catch (error) {
-                console.error('Error:', error);
+
                 setErrorMessage('An error occurred while logging in.');
             } finally {
                 setLoading(false);
             }
         }
     };
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>

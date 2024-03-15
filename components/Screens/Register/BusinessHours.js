@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BusinessHours = () => {
     const navigate = useNavigation();
@@ -14,7 +15,6 @@ const BusinessHours = () => {
     const device_token = '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx';
     const type = 'email';
     const social_id = '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx';
-    //console.log(previousData);
 
     const goBackButton = () => {
         navigate.goBack();
@@ -42,11 +42,11 @@ const BusinessHours = () => {
             social_id: social_id,
         };
 
-        //console.log('SUBMMISSION DATA: ', registerData);
+        console.log('Data to be sent:', registerData);
 
         try {
             setLoading(true);
-            const response = await fetch('https://sowlab.pw/assignment/user/register', {
+            const response = await fetch('https://sowlab.com/assignment/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,21 +54,26 @@ const BusinessHours = () => {
                 body: JSON.stringify(registerData),
             });
 
-            if (response.ok) {
-                //console.log('Registration successful');
 
-                //console.log(response);
+            const responseJson = await response.json();
+            console.log('Response:', responseJson);
+
+            const { success, message, token } = responseJson;
+
+            if (success === true) {
+                await AsyncStorage.setItem('token', token);
+
+                Alert.alert('Registration successful', message);
                 navigate.navigate('Confirmation');
             } else {
-                const errorData = await response.json();
-                Alert.alert('Registration failed:', errorData);
 
+                Alert.alert('Registration failed', message);
+                console.log('Error message:', message);
             }
         } catch (error) {
-            //console.error('Error:', error);
-
+            console.error('Error parsing response:', error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 

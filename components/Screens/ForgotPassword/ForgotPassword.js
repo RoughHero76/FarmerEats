@@ -32,7 +32,7 @@ const Forgotpassword = () => {
 
                 //console.log('Sending request with mobile number:', mobile);
 
-                const response = await axios.post('http://sowlab.com/assignment/user/forgot-password', ForgotPassword);
+                const response = await axios.post('https://sowlab.com/assignment/user/forgot-password', ForgotPassword);
 
                 //console.log('Response:', JSON.stringify(response.data, null, 2));
 
