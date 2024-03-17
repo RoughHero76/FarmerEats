@@ -10,7 +10,6 @@ import atIcon from '../../../assets/icons/at.png';
 import phoneIcon from '../../../assets/icons/phone.png';
 import lockIcon from '../../../assets/icons/lock.png';
 import { GoogleSignin, statusCodes, } from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
 
 
 
@@ -35,18 +34,26 @@ const RegisterUser = () => {
         offlineAccess: true,
     });
 
+    useEffect(() => {
+        //This is done so, if user come back from next screen, we rest phone state
+        setErrorMessage('');
+        setPhone('');
 
+    }, []);
     useEffect(() => {
         if (isEmailUpdated) {
             handleNextScreen();
             setIsEmailUpdated(false);
         }
     }, [email, isEmailUpdated]);
+
+
     const onGoogleButtonPress = async () => {
 
 
         try {
             setErrorMessage('');
+            await GoogleSignin.signOut();
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
             const { user } = await GoogleSignin.signIn();
 
@@ -54,6 +61,7 @@ const RegisterUser = () => {
             setFullName(`${user.givenName} ${user.familyName}`);
             setEmail(user.email);
             setType('google');
+            setPhone('');
             setIsEmailUpdated(true);
 
         } catch (error) {
@@ -92,7 +100,7 @@ const RegisterUser = () => {
             const registerData = {
                 fullName: fullName,
                 email: email,
-                phone: 'Phone with Country Code',
+                phone: phone,
                 password: password,
                 type: type,
                 role: 'farmer',
@@ -175,24 +183,41 @@ const RegisterUser = () => {
                                     placeholder="Email"
                                     placeholderTextColor="gray"
                                     underlineColorAndroid="transparent"
+                                    autoCapitalize="none"
                                     onChangeText={setEmail} />
                             </View>
                             <View style={styles.textInputSection}>
                                 <Image source={phoneIcon} style={styles.inputIcon} />
-                                <TextInput style={styles.textInput} placeholder="Phone" placeholderTextColor="gray"
-                                    underlineColorAndroid="transparent" onChangeText={setPhone} />
+                                <TextInput style={styles.textInput}
+                                    placeholder="Phone"
+                                    placeholderTextColor="gray"
+                                    underlineColorAndroid="transparent"
+                                    keyboardType="phone-pad"
+                                    onChangeText={setPhone}
+                                    value={phone}
+                                    autoComplete="off"
+                                />
                             </View>
                             <View style={styles.textInputSection}>
                                 <Image source={lockIcon} style={styles.iconPassword} />
-                                <TextInput style={styles.inputPassword} placeholder="Password"
-                                    placeholderTextColor="gray" secureTextEntry={true}
-                                    underlineColorAndroid="transparent" onChangeText={setPassword} />
+                                <TextInput style={styles.inputPassword}
+                                    placeholder="Password"
+                                    placeholderTextColor="gray"
+                                    secureTextEntry={true}
+                                    underlineColorAndroid="transparent"
+                                    onChangeText={setPassword}
+                                    autoComplete="off"
+                                />
                             </View>
                             <View style={styles.textInputSection}>
                                 <Image source={lockIcon} style={styles.iconPassword} />
-                                <TextInput style={styles.inputPassword} placeholder="Re-enter Password"
+                                <TextInput style={styles.inputPassword}
+                                    placeholder="Re-enter Password"
                                     placeholderTextColor="gray" secureTextEntry={true}
-                                    underlineColorAndroid="transparent" onChangeText={setReEnteredPassword} />
+                                    underlineColorAndroid="transparent"
+                                    onChangeText={setReEnteredPassword}
+                                    autoComplete="off"
+                                />
 
 
                             </View>

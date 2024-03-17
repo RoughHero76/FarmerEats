@@ -64,6 +64,7 @@ const App = () => {
               headerTitle: 'FarmerEats',
               headerBackVisible: false,
               headerShown: false,
+              gestureEnabled: false,
             }}
           />
 

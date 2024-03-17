@@ -19,20 +19,25 @@ const FormInfo = () => {
     const [city, setCity] = useState('');
     const [selectedState, setSelectedState] = useState('');
     const [zipCode, setZipCode] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState(route.params.registerData.phone);
+
 
     const goBackButton = () => {
-        navigate.goBack();
+        navigate.navigate('RegisterUser');
     };
+
+
 
     const previousData = route.params.registerData;
     //console.log(previousData);
+
+
     const handleContinueButton = () => {
+
         if (!businessName || !informalName || !streetAddress || !city || !selectedState || !zipCode || !phoneNumber) {
             Alert.alert('All fields are required!');
             return;
         }
-
 
         const registerData = {
             ...previousData,
@@ -44,16 +49,13 @@ const FormInfo = () => {
             zip_code: zipCode,
             phone: phoneNumber,
         };
-
-
-
-        //console.log(registerData);
         navigate.navigate('Verification', { registerData });
     };
 
 
     const isValidPhoneNumber = () => {
         const regex = /^\+?[0-9]{10,}$/;
+        setPhoneNumber
         return regex.test(previousData.phone);
     };
 
@@ -92,7 +94,7 @@ const FormInfo = () => {
                                 <Image source={phoneIcon} style={styles.inputIcon} />
                                 <TextInput
                                     style={styles.textInput}
-                                    placeholder={previousData?.phone}
+                                    placeholder={isValidPhoneNumber() ? phoneNumber : 'Phone Number with Country Code'}
                                     placeholderTextColor="gray"
                                     underlineColorAndroid="transparent"
                                     keyboardType="phone-pad"

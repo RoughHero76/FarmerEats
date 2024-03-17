@@ -64,9 +64,21 @@ const BusinessHours = () => {
                 Alert.alert('Registration successful', message);
                 navigate.navigate('Confirmation');
             } else {
-
-                Alert.alert('Registration failed', message);
-                /* console.log('Error message:', message); */
+                Alert.alert(
+                    'Registration failed',
+                    message,
+                    [
+                        {
+                            text: 'Go Back to Login',
+                            onPress: () => {
+                                navigate.navigate('Login');
+                            },
+                        },
+                        {
+                            text: 'OK',
+                        },
+                    ]
+                );
             }
         } catch (error) {
             console.error('Error parsing response:', error);
