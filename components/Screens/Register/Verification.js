@@ -17,7 +17,7 @@ const Verification = () => {
 
     const registration_proof = 'my_proof.pdf';
     const previousData = route.params.registerData;
-
+    console.log(previousData);
     //console.log(previousData);
     const handleContinueButtonPress = () => {
 
@@ -63,7 +63,7 @@ const Verification = () => {
                 Alert.alert('Error: ', 'Sorry, we encountered an error');
                 //console.log('CameraPicker Error:', response.errorMessage);
             } else if (!response.didCancel) {
-                setSelectedDocument(response.assets[0].fileName); // Update the selected document with the image name
+                setSelectedDocument(response.assets[0].fileName);
             } else {
                 Alert.alert('Cancelled', 'You cancelled camera');
                 //console.log('User cancelled camera picker');

@@ -11,9 +11,7 @@ const BusinessHours = () => {
 
     const previousData = route.params.registerData;
 
-
     const device_token = '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx';
-    const type = 'email';
     const social_id = '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx';
 
     const goBackButton = () => {
@@ -38,11 +36,11 @@ const BusinessHours = () => {
             registration_proof: previousData.registration_proof,
             business_hours: businessHours,
             device_token: device_token,
-            type: type,
+            type: previousData.type,
             social_id: social_id,
         };
 
-        console.log('Data to be sent:', registerData);
+        /* console.log('Data to be sent:', registerData); */
 
         try {
             setLoading(true);
@@ -56,7 +54,7 @@ const BusinessHours = () => {
 
 
             const responseJson = await response.json();
-            console.log('Response:', responseJson);
+            /* console.log('Response:', responseJson); */
 
             const { success, message, token } = responseJson;
 
@@ -68,7 +66,7 @@ const BusinessHours = () => {
             } else {
 
                 Alert.alert('Registration failed', message);
-                console.log('Error message:', message);
+                /* console.log('Error message:', message); */
             }
         } catch (error) {
             console.error('Error parsing response:', error);

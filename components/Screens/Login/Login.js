@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Image, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Image, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import atIcon from '../../../assets/icons/at.png';
@@ -9,6 +9,8 @@ import facebookIcon from '../../../assets/icons/facebook.png';
 import googleIcon from '../../../assets/icons/google.png';
 import appleIcon from '../../../assets/icons/apple.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
 
 
 const LoginScreen = () => {
@@ -17,11 +19,18 @@ const LoginScreen = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isEmailUpdated, setIsEmailUpdated] = useState(false);
 
 
     const clearMessage = () => {
         setErrorMessage('');
     };
+
+    GoogleSignin.configure({
+        webClientId: '669618934750-dort7mf226lbgsqoag6e3bjiiv849fi6.apps.googleusercontent.com',
+        offlineAccess: true,
+    });
+
     useEffect(() => {
         AsyncStorage.getItem('token')
             .then(token => {
@@ -42,6 +51,97 @@ const LoginScreen = () => {
 
         return unsubscribe;
     }, [navigate]);
+
+
+    useEffect(() => {
+        if (isEmailUpdated) {
+            /* console.log('Email:', email); */
+
+            handleGoogleSignInSuccess();
+
+            setIsEmailUpdated(false);
+        }
+    }, [email, isEmailUpdated]);
+
+    const onGoogleButtonPress = async () => {
+
+        try {
+            /*  console.log('Pressed'); */
+            await GoogleSignin.signOut();
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+            const { user } = await GoogleSignin.signIn();
+            /* console.log(user); */
+
+            setEmail(user.email);
+            /* console.log('User email (directly):', user.email);
+            console.log('Email state after setEmail:', email); */
+            setIsEmailUpdated(true);
+
+            /* return auth().signInWithCredential(googleCredential); */
+
+
+        } catch (error) {
+
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+
+                /* console.log(statusCodes.SIGN_IN_CANCELLED); */
+                Alert.alert('Failed', 'Signing was cancelled');
+
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                /* console.log(statusCodes.IN_PROGRESS); */
+                Alert.alert('Please Wait', 'In Progress');
+
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+
+                /* console.log(statusCodes.PLAY_SERVICES_NOT_AVAILABLE); */
+                Alert.alert('Play Service', 'Play Service is not available');
+
+            } else {
+
+                Alert.alert('Error', 'Something went wrong');
+                /* console.log(error.message); */
+            }
+
+        }
+
+    };
+
+    const handleGoogleSignInSuccess = async () => {
+        if (!email) {
+            /* console.log('Email: ', email); */
+            Alert.alert('Error', 'Failed to get email, please try again');
+
+        } else {
+
+            setLoading(true);
+
+            try {
+
+                const Login = {
+                    email: email,
+                    role: 'farmer',
+                    device_token: '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
+                    type: 'google',
+                    social_id: '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
+                };
+                const response = await axios.post('https://sowlab.com/assignment/user/login', Login);
+                if (response.data.success === true) {
+                    const token = response.data.token;
+                    /* console.log('Token: ', token); */
+                    AsyncStorage.setItem('token', token);
+                    navigate.navigate('Home');
+                } else {
+                    setErrorMessage(response.data.message);
+                }
+            } catch (error) {
+
+                setErrorMessage('An error occurred while logging in.');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+    };
 
     const handleForgotPassword = () => {
         navigate.navigate('ForgotPassword');
@@ -64,25 +164,20 @@ const LoginScreen = () => {
                     type: 'email',
                     social_id: '0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
                 };
-
-                //                console.log('Login data:', Login);
-
                 const response = await axios.post('https://sowlab.com/assignment/user/login', Login);
-
-                //   console.log('Response: ', response);
-
-                // console.log('Response: ', JSON.stringify(response.data, null, 2)); // Debug: Log response data
-
                 if (response.data.success === true) {
                     const token = response.data.token;
-                    console.log('Token: ', token);
+                    /* console.log('Token: ', token); */
                     AsyncStorage.setItem('token', token);
                     navigate.navigate('Home');
                 } else {
+
+                    setEmail('');
                     setErrorMessage(response.data.message);
                 }
             } catch (error) {
 
+                setEmail('');
                 setErrorMessage('An error occurred while logging in.');
             } finally {
                 setLoading(false);
@@ -158,7 +253,8 @@ const LoginScreen = () => {
                     <Text style={styles.orLoginText}>Or login with</Text>
 
                     <View style={styles.socialIconContainer}>
-                        <TouchableOpacity style={styles.socialIcon}>
+                        <TouchableOpacity style={styles.socialIcon} onPre onPress={() => onGoogleButtonPress()
+                        }>
                             <Image
                                 source={googleIcon}
                                 style={styles.icon}

@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const Home = ({ navigation }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,10 +27,11 @@ const Home = ({ navigation }) => {
     const handleLogout = async () => {
         try {
             await AsyncStorage.removeItem('token');
+            await GoogleSignin.revokeAccess();
             setIsLoggedIn(false);
             navigation.navigate('Login');
         } catch (error) {
-            console.error('Error removing token:', error);
+            Alert.alert('Error Loggin out user:', error);
         }
     };
 

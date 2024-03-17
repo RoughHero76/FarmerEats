@@ -7,6 +7,7 @@ import farmInfo1 from '../../../assets/icons/farmInfo1.png';
 import farmInfo2 from '../../../assets/icons/farmInfo2.png';
 import farmInfo3 from '../../../assets/icons/farmInfo3.png';
 import farmInfo4 from '../../../assets/icons/farmInfo4.png';
+import phoneIcon from '../../../assets/icons/phone.png'
 
 const FormInfo = () => {
     const route = useRoute();
@@ -18,22 +19,20 @@ const FormInfo = () => {
     const [city, setCity] = useState('');
     const [selectedState, setSelectedState] = useState('');
     const [zipCode, setZipCode] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const goBackButton = () => {
         navigate.goBack();
     };
 
     const previousData = route.params.registerData;
-
     //console.log(previousData);
     const handleContinueButton = () => {
-
-
-        if (!businessName || !informalName || !streetAddress || !city || !selectedState || !zipCode) {
-
+        if (!businessName || !informalName || !streetAddress || !city || !selectedState || !zipCode || !phoneNumber) {
             Alert.alert('All fields are required!');
             return;
         }
+
 
         const registerData = {
             ...previousData,
@@ -43,39 +42,32 @@ const FormInfo = () => {
             city: city,
             state: selectedState,
             zip_code: zipCode,
-
+            phone: phoneNumber,
         };
+
+
 
         //console.log(registerData);
         navigate.navigate('Verification', { registerData });
     };
 
-    return (
 
+    const isValidPhoneNumber = () => {
+        const regex = /^\+?[0-9]{10,}$/;
+        return regex.test(previousData.phone);
+    };
+
+    return (
         <KeyboardAvoidingView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-
                     <View style={styles.container}>
-                        <Text style={styles.headerTitle}>
-                            Farmer Eats
-                        </Text>
-
-
-                        <Text style={styles.fadedText}>
-                            Signup 2 of 4
-                        </Text>
-
+                        <Text style={styles.headerTitle}>Farmer Eats</Text>
+                        <Text style={styles.fadedText}>Signup 2 of 4</Text>
                         <View style={styles.mainContainer}>
-                            <Text style={styles.greetingUser}>
-                                Farm Info
-                            </Text>
-
-                            <View style={styles.textInputSection} >
-                                <Image
-                                    source={farmInfo1}
-                                    style={styles.inputIcon}
-                                />
+                            <Text style={styles.greetingUser}>Farm Info</Text>
+                            <View style={styles.textInputSection}>
+                                <Image source={farmInfo1} style={styles.inputIcon} />
                                 <TextInput
                                     style={styles.textInput}
                                     placeholder="Business Name"
@@ -84,12 +76,8 @@ const FormInfo = () => {
                                     onChangeText={setBusinessName}
                                 />
                             </View>
-
-                            <View style={styles.textInputSection} >
-                                <Image
-                                    source={farmInfo2}
-                                    style={styles.inputIcon}
-                                />
+                            <View style={styles.textInputSection}>
+                                <Image source={farmInfo2} style={styles.inputIcon} />
                                 <TextInput
                                     style={styles.textInput}
                                     placeholder="Informal Name"
@@ -99,11 +87,22 @@ const FormInfo = () => {
                                 />
                             </View>
 
-                            <View style={styles.textInputSection} >
-                                <Image
-                                    source={farmInfo3}
-                                    style={styles.inputIcon}
+
+                            <View style={styles.textInputSection}>
+                                <Image source={phoneIcon} style={styles.inputIcon} />
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder={previousData?.phone}
+                                    placeholderTextColor="gray"
+                                    underlineColorAndroid="transparent"
+                                    keyboardType="phone-pad"
+                                    onChangeText={setPhoneNumber}
+                                    editable={!isValidPhoneNumber()}
                                 />
+                            </View>
+
+                            <View style={styles.textInputSection}>
+                                <Image source={farmInfo3} style={styles.inputIcon} />
                                 <TextInput
                                     style={styles.textInput}
                                     placeholder="Street Address"
@@ -112,14 +111,8 @@ const FormInfo = () => {
                                     onChangeText={setStreetAddress}
                                 />
                             </View>
-
-
-
-                            <View style={styles.textInputSection} >
-                                <Image
-                                    source={farmInfo4}
-                                    style={styles.iconPassword}
-                                />
+                            <View style={styles.textInputSection}>
+                                <Image source={farmInfo4} style={styles.iconPassword} />
                                 <TextInput
                                     style={styles.inputPassword}
                                     placeholder="City"
@@ -128,8 +121,6 @@ const FormInfo = () => {
                                     onChangeText={setCity}
                                 />
                             </View>
-
-
                             <View style={styles.inputContainer}>
                                 <View style={styles.pickerContainer}>
                                     <Picker
@@ -142,7 +133,6 @@ const FormInfo = () => {
                                         <Picker.Item label="Alabama" value="AL" />
                                         <Picker.Item label="Alaska" value="AK" />
                                         <Picker.Item label="Other" value="OT" />
-
                                         {/* Add more states */}
                                     </Picker>
                                 </View>
@@ -157,15 +147,13 @@ const FormInfo = () => {
                                     />
                                 </View>
                             </View>
-
+                            {/* Input field for phone number */}
 
                         </View>
-
-
                         <View style={styles.continueButtonContainer}>
                             <TouchableOpacity style={styles.backButton} onPress={goBackButton}>
-                                <Image style={styles.backButtonText}
-
+                                <Image
+                                    style={styles.backButtonText}
                                     source={{
                                         uri: 'https://cdn-icons-png.flaticon.com/128/3114/3114883.png',
                                     }}
@@ -174,20 +162,13 @@ const FormInfo = () => {
                             <TouchableOpacity style={styles.continueButton} onPress={handleContinueButton}>
                                 <Text style={styles.continueButtonText}>Continue</Text>
                             </TouchableOpacity>
-
                         </View>
-
                     </View>
-
                 </TouchableWithoutFeedback>
             </ScrollView>
-
-
         </KeyboardAvoidingView>
-
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -291,7 +272,7 @@ const styles = StyleSheet.create({
     continueButtonContainer: {
         flexDirection: 'row',
         alignItems: 'flex-end',
-        marginTop: 230,
+        marginTop: 180,
         bottom: 20,
         left: -10,
         right: 30,

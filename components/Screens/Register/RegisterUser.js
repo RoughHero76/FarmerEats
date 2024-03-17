@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Alert, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import googleIcon from '../../../assets/icons/google.png';
 import appleIcon from '../../../assets/icons/apple.png';
@@ -9,6 +9,9 @@ import userIcon from '../../../assets/icons/user.png';
 import atIcon from '../../../assets/icons/at.png';
 import phoneIcon from '../../../assets/icons/phone.png';
 import lockIcon from '../../../assets/icons/lock.png';
+import { GoogleSignin, statusCodes, } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+
 
 
 const RegisterUser = () => {
@@ -18,6 +21,8 @@ const RegisterUser = () => {
     const [password, setPassword] = useState('');
     const [reEnteredPassword, setReEnteredPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [type, setType] = useState('');
+    const [isEmailUpdated, setIsEmailUpdated] = useState(false);
 
 
     const navigate = useNavigation();
@@ -25,12 +30,88 @@ const RegisterUser = () => {
         navigate.navigate('Login');
     };
 
+    GoogleSignin.configure({
+        webClientId: '669618934750-dort7mf226lbgsqoag6e3bjiiv849fi6.apps.googleusercontent.com',
+        offlineAccess: true,
+    });
+
+
+    useEffect(() => {
+        if (isEmailUpdated) {
+            handleNextScreen();
+            setIsEmailUpdated(false);
+        }
+    }, [email, isEmailUpdated]);
+    const onGoogleButtonPress = async () => {
+
+
+        try {
+            setErrorMessage('');
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+            const { user } = await GoogleSignin.signIn();
+
+
+            setFullName(`${user.givenName} ${user.familyName}`);
+            setEmail(user.email);
+            setType('google');
+            setIsEmailUpdated(true);
+
+        } catch (error) {
+
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+
+                /* console.log(statusCodes.SIGN_IN_CANCELLED); */
+                Alert.alert('Failed', 'Signing up was cancelled');
+
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                /* console.log(statusCodes.IN_PROGRESS); */
+                Alert.alert('Please Wait', 'In Progress');
+
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+
+                /* console.log(statusCodes.PLAY_SERVICES_NOT_AVAILABLE); */
+                Alert.alert('Play Service', 'Play Service is not available');
+
+            } else {
+
+                Alert.alert('Error', 'Something went wrong');
+                /* console.log(error.message); */
+            }
+
+        }
+
+    };
+
+
+    const handleNextScreen = async () => {
+        if (!email) {
+            Alert.alert('Error', 'Failed to get your email. Please try again');
+        } else {
+
+
+            const registerData = {
+                fullName: fullName,
+                email: email,
+                phone: 'Phone with Country Code',
+                password: password,
+                type: type,
+                role: 'farmer',
+
+            };
+            navigate.navigate('FormInfo', { registerData });
+
+
+        }
+    }
+
     const handleContinueButtonPress = () => {
         if (validateInputs()) {
+            setType('email');
             const registerData = {
                 fullName: fullName,
                 email: email,
                 phone: phone,
+                type: type,
                 password: password,
                 role: 'farmer',
             };
@@ -68,8 +149,12 @@ const RegisterUser = () => {
 
 
                             <View style={styles.socialIconContainer}>
-                                <TouchableOpacity style={styles.socialIcon}>
-                                    <Image source={googleIcon} style={styles.icon} />
+                                <TouchableOpacity style={styles.socialIcon} onPre onPress={() => onGoogleButtonPress()
+                                }>
+                                    <Image
+                                        source={googleIcon}
+                                        style={styles.icon}
+                                    />
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.socialIcon}>
                                     <Image source={appleIcon} style={styles.icon} />
@@ -86,8 +171,11 @@ const RegisterUser = () => {
                             </View>
                             <View style={styles.textInputSection}>
                                 <Image source={atIcon} style={styles.inputIcon} />
-                                <TextInput style={styles.textInput} placeholder="Email" placeholderTextColor="gray"
-                                    underlineColorAndroid="transparent" onChangeText={setEmail} />
+                                <TextInput style={styles.textInput}
+                                    placeholder="Email"
+                                    placeholderTextColor="gray"
+                                    underlineColorAndroid="transparent"
+                                    onChangeText={setEmail} />
                             </View>
                             <View style={styles.textInputSection}>
                                 <Image source={phoneIcon} style={styles.inputIcon} />
