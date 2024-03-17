@@ -10,6 +10,7 @@ import atIcon from '../../../assets/icons/at.png';
 import phoneIcon from '../../../assets/icons/phone.png';
 import lockIcon from '../../../assets/icons/lock.png';
 import { GoogleSignin, statusCodes, } from '@react-native-google-signin/google-signin';
+import Config from 'react-native-config';
 
 
 
@@ -30,7 +31,7 @@ const RegisterUser = () => {
     };
 
     GoogleSignin.configure({
-        webClientId: '669618934750-dort7mf226lbgsqoag6e3bjiiv849fi6.apps.googleusercontent.com',
+        webClientId: Config.WEB_CLIENT_ID,
         offlineAccess: true,
     });
 

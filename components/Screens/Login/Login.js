@@ -10,7 +10,7 @@ import googleIcon from '../../../assets/icons/google.png';
 import appleIcon from '../../../assets/icons/apple.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
+import Config from 'react-native-config';
 
 
 const LoginScreen = () => {
@@ -27,7 +27,7 @@ const LoginScreen = () => {
     };
 
     GoogleSignin.configure({
-        webClientId: '669618934750-dort7mf226lbgsqoag6e3bjiiv849fi6.apps.googleusercontent.com',
+        webClientId: Config.WEB_CLIENT_ID,
         offlineAccess: true,
     });
 

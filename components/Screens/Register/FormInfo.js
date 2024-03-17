@@ -135,7 +135,7 @@ const FormInfo = () => {
                                         <Picker.Item label="Alabama" value="AL" />
                                         <Picker.Item label="Alaska" value="AK" />
                                         <Picker.Item label="Other" value="OT" />
-                                        {/* Add more states */}
+
                                     </Picker>
                                 </View>
                                 <View style={styles.zipCodeContainer}>
@@ -149,8 +149,6 @@ const FormInfo = () => {
                                     />
                                 </View>
                             </View>
-                            {/* Input field for phone number */}
-
                         </View>
                         <View style={styles.continueButtonContainer}>
                             <TouchableOpacity style={styles.backButton} onPress={goBackButton}>
@@ -260,7 +258,7 @@ const styles = StyleSheet.create({
 
     backButton: {
         marginLeft: 40,
-        backgroundColor: 'transparent', // Transparent background
+        backgroundColor: 'transparent',
         borderRadius: 8,
         height: 48,
         justifyContent: 'center',
@@ -319,9 +317,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#ededed',
         borderColor: '#000',
-        height: 48, // Adjust the height as needed
+        height: 48,
         borderRadius: 8,
-        marginRight: 10, // Add some margin between the Picker and Zip Code
+        marginRight: 10,
     },
 
     zipCodeContainer: {
@@ -332,7 +330,7 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         height: 48,
         borderRadius: 8,
-        marginLeft: 10, // Add some margin between the Picker and Zip Code
+        marginLeft: 10,
     },
 });
 
