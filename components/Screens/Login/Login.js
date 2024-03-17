@@ -10,7 +10,7 @@ import googleIcon from '../../../assets/icons/google.png';
 import appleIcon from '../../../assets/icons/apple.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import Config from 'react-native-config';
+
 
 
 const LoginScreen = () => {
@@ -27,7 +27,7 @@ const LoginScreen = () => {
     };
 
     GoogleSignin.configure({
-        webClientId: Config.WEB_CLIENT_ID,
+        webClientId: '669618934750-dort7mf226lbgsqoag6e3bjiiv849fi6.apps.googleusercontent.com',
         offlineAccess: true,
     });
 
@@ -61,6 +61,7 @@ const LoginScreen = () => {
 
             setIsEmailUpdated(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [email, isEmailUpdated]);
 
     const onGoogleButtonPress = async () => {
@@ -129,6 +130,7 @@ const LoginScreen = () => {
                     const token = response.data.token;
                     /* console.log('Token: ', token); */
                     AsyncStorage.setItem('token', token);
+                    AsyncStorage.setItem('type', 'google');
                     navigate.navigate('Home');
                 } else {
                     setErrorMessage(response.data.message);
@@ -216,6 +218,7 @@ const LoginScreen = () => {
                             placeholderTextColor="gray"
                             underlineColorAndroid="transparent"
                             onChangeText={setEmail}
+
                         />
                     </View>
 

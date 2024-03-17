@@ -40,7 +40,7 @@ const BusinessHours = () => {
             social_id: social_id,
         };
 
-        /* console.log('Data to be sent:', registerData); */
+        console.log('Data to be sent:', registerData);
 
         try {
             setLoading(true);

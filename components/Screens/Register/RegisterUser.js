@@ -10,7 +10,7 @@ import atIcon from '../../../assets/icons/at.png';
 import phoneIcon from '../../../assets/icons/phone.png';
 import lockIcon from '../../../assets/icons/lock.png';
 import { GoogleSignin, statusCodes, } from '@react-native-google-signin/google-signin';
-import Config from 'react-native-config';
+
 
 
 
@@ -21,7 +21,7 @@ const RegisterUser = () => {
     const [password, setPassword] = useState('');
     const [reEnteredPassword, setReEnteredPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('email');
     const [isEmailUpdated, setIsEmailUpdated] = useState(false);
 
 
@@ -31,7 +31,7 @@ const RegisterUser = () => {
     };
 
     GoogleSignin.configure({
-        webClientId: Config.WEB_CLIENT_ID,
+        webClientId: '669618934750-dort7mf226lbgsqoag6e3bjiiv849fi6.apps.googleusercontent.com',
         offlineAccess: true,
     });
 
@@ -115,7 +115,7 @@ const RegisterUser = () => {
 
     const handleContinueButtonPress = () => {
         if (validateInputs()) {
-            setType('email');
+
             const registerData = {
                 fullName: fullName,
                 email: email,

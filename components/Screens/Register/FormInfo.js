@@ -29,7 +29,9 @@ const FormInfo = () => {
 
 
     const previousData = route.params.registerData;
-    //console.log(previousData);
+    console.log('Type: ', previousData.type);
+
+
 
 
     const handleContinueButton = () => {

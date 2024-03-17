@@ -6,15 +6,21 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const Home = ({ navigation }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isGoogle, setGoogle] = useState(false);
 
     useEffect(() => {
         const checkToken = async () => {
             try {
                 const token = await AsyncStorage.getItem('token');
+                const type = await AsyncStorage.getItem('type');
                 if (token) {
                     setIsLoggedIn(true);
                 } else {
                     navigation.navigate('Login');
+                }
+
+                if (type) {
+                    setGoogle(true);
                 }
             } catch (error) {
                 console.error('Error checking token:', error);
@@ -27,11 +33,17 @@ const Home = ({ navigation }) => {
     const handleLogout = async () => {
         try {
             await AsyncStorage.removeItem('token');
-            await GoogleSignin.revokeAccess();
+
+            if (isGoogle) {
+                console.log('Google SignOut Invoked');
+                await AsyncStorage.removeItem('type');
+                await GoogleSignin.revokeAccess();
+            }
+
             setIsLoggedIn(false);
             navigation.navigate('Login');
         } catch (error) {
-            Alert.alert('Error Loggin out user:', error);
+            console.log(error);
         }
     };
 
